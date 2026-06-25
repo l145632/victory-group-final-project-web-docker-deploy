@@ -1,0 +1,16 @@
+name: Build & Deploy Docker Image
+on: [push] # 代码提交自动触发流水线
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      # 可自行配置镜像推送至DockerHub，实现自动构建
+      - name: Build personal site docker image
+        run: docker build -t personal-website ./personal-site
